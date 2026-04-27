@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Executive Förder-Audit 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --blue:#1a6fc4;--blue-light:#2d8ef0;--blue-pill:#3b9ef5;
+    --navy:#0d1e3d;--navy2:#122448;
+    --white:#ffffff;--offwhite:#f4f8fd;--gray:#6b7a99;--gray-light:#e8edf5;
+    --text:#1a2340;--text2:#4a5570;
+  }
+  body{font-family:'Inter',sans-serif;background:#f0f5fb;color:var(--text);line-height:1.6;min-height:100vh}
+  .wrap{max-width:760px;margin:0 auto;background:#fff;box-shadow:0 0 60px rgba(0,0,0,0.08)}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#e8f2fd 0%,#d0e6fa 60%,#b8d8f8 100%);padding:60px 48px 52px;position:relative;overflow:hidden}
+  .hero::after{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;border:60px solid rgba(26,111,196,0.08);border-radius:50%}
+  .hero-badge{display:inline-block;background:var(--blue-pill);color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 18px;border-radius:20px;margin-bottom:22px}
+  .hero h1{font-size:34px;font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:14px;max-width:540px}
+  .hero-sub{font-size:15px;color:var(--text2);line-height:1.65;margin-bottom:28px;max-width:480px}
+  .hero-tagline{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .hero-tagline2{font-size:13px;color:var(--text2)}
+
+  /* SECTIONS */
+  .section{padding:44px 48px}
+  .section-badge{display:inline-block;background:var(--blue-pill);color:#fff;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:20px}
+  .section-title{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:24px;line-height:1.3}
+
+  /* PROMISE CARDS */
+  .promise-cards{display:grid;gap:14px}
+  .pcard{background:#fff;border:1.5px solid var(--gray-light);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:18px;transition:border-color 0.2s,box-shadow 0.2s}
+  .pcard:hover{border-color:var(--blue-pill);box-shadow:0 4px 20px rgba(26,111,196,0.08)}
+  .pcard-icon{width:52px;height:52px;border-radius:50%;background:var(--offwhite);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .pcard-icon svg{width:26px;height:26px}
+  .pcard-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px}
+  .pcard-desc{font-size:13px;color:var(--blue);line-height:1.55}
+
+  /* DARK SECTIONS */
+  .dark{background:var(--navy);padding:44px 48px}
+  .dark .section-badge{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.65)}
+  .dark .section-title{color:#fff}
+
+  /* BELIEF */
+  .belief-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  .bcard{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:22px}
+  .bcard-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-pill);margin-bottom:12px;font-weight:600}
+  .bcard p{font-size:13px;color:rgba(255,255,255,0.72);line-height:1.65}
+  .belief-stat{background:rgba(45,142,240,0.15);border:1px solid rgba(45,142,240,0.3);border-radius:14px;padding:22px 28px;display:flex;align-items:center;gap:24px;margin-bottom:16px}
+  .stat-num{font-size:48px;font-weight:800;color:var(--blue-pill);line-height:1;white-space:nowrap}
+  .stat-text{font-size:13px;color:rgba(255,255,255,0.68);line-height:1.6}
+  .belief-prompt{background:rgba(255,255,255,0.04);border-left:3px solid var(--blue-pill);padding:16px 20px;border-radius:0 10px 10px 0;font-size:14px;font-style:italic;color:rgba(255,255,255,0.58);line-height:1.65}
+
+  /* AUDIT */
+  .audit-intro{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:24px;padding:14px 20px;background:var(--offwhite);border-radius:10px;border-left:3px solid var(--blue)}
+  table.at{width:100%;border-collapse:collapse;font-size:13px}
+  table.at thead tr{background:var(--navy)}
+  table.at thead th{padding:12px 14px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase;text-align:left}
+  table.at thead th:not(:first-child):not(:nth-child(2)){text-align:center;width:68px}
+  table.at tbody tr{border-bottom:1px solid var(--gray-light);cursor:pointer;transition:background 0.1s}
+  table.at tbody tr:hover{background:var(--offwhite)}
+  table.at tbody td{padding:14px;vertical-align:top;line-height:1.5;color:var(--text)}
+  table.at td.qn{font-size:10px;font-weight:700;color:var(--blue);padding-right:4px;white-space:nowrap;min-width:20px}
+  table.at td .topic{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:4px}
+  table.at td.cc{text-align:center;vertical-align:middle}
+  .rb{width:20px;height:20px;border-radius:50%;border:2px solid var(--gray-light);display:inline-block;cursor:pointer;transition:all 0.15s;vertical-align:middle}
+  .rb:hover{border-color:var(--blue-pill)}
+  .rb.yes{background:var(--blue);border-color:var(--blue)}
+  .rb.partial{background:#f0a500;border-color:#f0a500}
+  .rb.no{background:#c0392b;border-color:#c0392b}
+
+  /* SCORING */
+  .score-circle{width:110px;height:110px;border-radius:50%;background:rgba(45,142,240,0.12);border:2.5px solid var(--blue-pill);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 32px}
+  .score-circle .sn{font-size:42px;font-weight:800;color:#fff;line-height:1}
+  .score-circle .sl{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-top:2px}
+  .tier-cards{display:grid;gap:14px}
+  .tc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px 22px;display:flex;gap:18px;transition:all 0.2s}
+  .tc.active{background:rgba(45,142,240,0.15);border-color:rgba(45,142,240,0.5)}
+  .tc-range{font-size:22px;font-weight:800;min-width:48px;margin-top:2px}
+  .tc-range.low{color:rgba(255,255,255,0.35)}
+  .tc-range.mid{color:#f0a500}
+  .tc-range.hi{color:#e74c3c}
+  .tc-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:5px}
+  .tc-desc{font-size:12px;color:rgba(255,255,255,0.52);line-height:1.55}
+
+  /* CHALLENGES */
+  .challenge-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px}
+  .ccard{background:#fff;border:1.5px solid var(--gray-light);border-radius:14px;padding:20px 18px;overflow:hidden;transition:box-shadow 0.2s}
+  .ccard:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+  .ccard-img{width:100%;height:88px;background:var(--offwhite);border-radius:10px;margin-bottom:14px;display:flex;align-items:center;justify-content:center}
+  .ccard-img svg{width:52px;height:52px}
+  .ccard-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:7px;text-decoration:underline;line-height:1.35}
+  .ccard-desc{font-size:12px;color:var(--text2);line-height:1.55}
+
+  /* TESTIMONIAL */
+  .proof-testimonial{background:var(--navy);border-radius:18px;padding:36px 40px}
+  .proof-amount{font-size:44px;font-weight:800;color:var(--blue-pill);margin-bottom:3px}
+  .proof-amount-label{font-size:11px;color:rgba(255,255,255,0.38);letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+  .proof-divider{height:1px;background:rgba(255,255,255,0.1);margin-bottom:22px}
+  .q1{font-size:16px;color:rgba(255,255,255,0.85);font-style:italic;line-height:1.7;margin-bottom:16px}
+  .q2{font-size:13px;color:rgba(255,255,255,0.52);font-style:italic;line-height:1.65;border-left:2px solid var(--blue-pill);padding-left:16px}
+
+  /* MISTAKES */
+  .mistakes-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+  .mc-x{width:24px;height:24px;border-radius:50%;background:rgba(231,76,60,0.2);border:1px solid rgba(231,76,60,0.45);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .mc-x span{font-size:13px;color:#e74c3c;font-weight:700;line-height:1}
+  .mc-text{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.58}
+  .mc-text strong{color:#fff;font-weight:600;display:block;margin-bottom:4px;font-size:13px}
+
+  /* CTA */
+  .cta{background:linear-gradient(135deg,#1a4fa0 0%,#1a6fc4 100%);padding:56px 48px}
+  .cta .section-badge{background:rgba(255,255,255,0.15);color:#fff}
+  .cta .section-title{color:#fff;margin-bottom:10px}
+  .cta-sub{font-size:14px;color:rgba(255,255,255,0.62);margin-bottom:30px}
+  .cta-checks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px}
+  .cta-check{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:rgba(255,255,255,0.82);line-height:1.5}
+  .chk{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .chk::after{content:'';width:8px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translateY(-1px);display:block}
+  .cta-btn{display:inline-block;background:#fff;color:var(--blue);font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:16px 48px;border-radius:40px;border:none;cursor:pointer;letter-spacing:0.3px;transition:all 0.2s;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-decoration:none}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.22)}
+  .cta-note{font-size:11px;color:rgba(255,255,255,0.32);margin-top:16px;letter-spacing:1.5px;text-transform:uppercase}
+
+  /* FOOTER */
+  .footer{background:var(--navy);padding:28px 48px;text-align:center;font-size:12px;color:rgba(255,255,255,0.28);letter-spacing:0.5px}
+
+  @media(max-width:600px){
+    .hero{padding:40px 24px 36px}
+    .section,.dark,.cta{padding:36px 24px}
+    .hero h1{font-size:26px}
+    .belief-grid,.mistakes-grid,.cta-checks{grid-template-columns:1fr}
+    .challenge-cards{grid-template-columns:1fr}
+    .proof-testimonial{padding:28px 24px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Executive Förder-Audit · 2026</div>
+    <h1>Wie viel Lohnkostenzuschuss verschenkt Ihr Unternehmen aktuell?</h1>
+    <div class="hero-sub">Der 7-Minuten Geschäftsführer-Check für Produktionsunternehmen, Mittelstand &amp; technische Betriebe</div>
+    <div class="hero-tagline">Ihre Lohnkosten steigen. Und Förderung bleibt ungenutzt?</div>
+    <div class="hero-tagline2">Wir verwandeln versteckte Potenziale in wirtschaftlich relevante Zuschüsse.</div>
+  </div>
+
+  <!-- PROMISE -->
+  <div class="section">
+    <div class="section-badge">Was dieses Audit zeigt</div>
+    <div class="section-title">Ihr Förderpotenzial auf einen Blick</div>
+    <div class="promise-cards">
+      <div class="pcard">
+        <div class="pcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fc4" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <div class="pcard-title">Personalkosten senken –</div>
+          <div class="pcard-desc">durch Lohnkostenzuschüsse und Weiterbildungsförderung für bestehende und neue Mitarbeiter</div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fc4" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div>
+          <div class="pcard-title">Wachstum &amp; Vorsprung sichern –</div>
+          <div class="pcard-desc">mit einer strategischen Förderplanung statt Eigenkapitaleinsatz</div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fc4" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <div class="pcard-title">Ganzheitliche Umsetzung &amp; Zeitgewinn –</div>
+          <div class="pcard-desc">wir übernehmen Analyse, Antragstellung und vollständige Abwicklung</div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a6fc4" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        </div>
+        <div>
+          <div class="pcard-title">Fünfstellige Beträge sichtbar machen –</div>
+          <div class="pcard-desc">ohne Fachchinesisch, ohne Behördenlogik, mit klarer Management-Perspektive</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BELIEF / FRAMING -->
+  <div class="dark">
+    <div class="section-badge">Sektion 01</div>
+    <div class="section-title">Warum Unternehmen Fördergelder verschenken</div>
+    <div class="belief-grid">
+      <div class="bcard">
+        <div class="bcard-tag">Was viele glauben</div>
+        <p>„Fördermittel sind kompliziert, langsam und nur etwas für Großprojekte." Diese Annahme kostet Mittelständler Jahr für Jahr erhebliche Liquidität.</p>
+      </div>
+      <div class="bcard">
+        <div class="bcard-tag">Die Realität</div>
+        <p>Viele der attraktivsten Programme betreffen laufende Personalkosten, Weiterbildung und Fachkräfteentwicklung. Sie sind oft monatlich abrufbar.</p>
+      </div>
+    </div>
+    <div class="belief-stat">
+      <div class="stat-num">65%</div>
+      <div class="stat-text">der erreichbaren Fördermittel bleiben bei Produktionsunternehmen ungenutzt. Besonders bei strukturierten Förderkombinationen sind die Summen erheblich höher als erwartet.</div>
+    </div>
+    <div class="belief-prompt">Haben Sie bereits aktiv geprüft, welche Personalkosten heute förderfähig sind? Oder verlassen Sie sich auf Vermutungen?</div>
+  </div>
+
+  <!-- AUDIT CHECK -->
+  <div class="section">
+    <div class="section-badge">Sektion 02 · Ihr persönlicher Check</div>
+    <div class="section-title">Der Executive Förder-Check</div>
+    <div class="audit-intro">Bitte bewerten Sie jede Aussage ehrlich. Klicken Sie auf die zutreffende Antwort. Ihre Auswertung erscheint automatisch in Sektion 03.</div>
+    <table class="at" id="auditTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Thema &amp; Frage</th>
+          <th>Ja</th>
+          <th>Teilw.</th>
+          <th>Nein</th>
+        </tr>
+      </thead>
+      <tbody id="auditBody"></tbody>
+    </table>
+  </div>
+
+  <!-- SCORING -->
+  <div class="dark">
+    <div class="section-badge">Sektion 03 · Auswertung</div>
+    <div class="section-title">Ihr Förderpotenzial</div>
+    <div class="score-circle">
+      <div class="sn" id="scoreNum">–</div>
+      <div class="sl">von 7</div>
+    </div>
+    <div class="tier-cards">
+      <div class="tc" id="t0">
+        <div class="tc-range low">0–2</div>
+        <div>
+          <div class="tc-title">Geringes Förderpotenzial sichtbar</div>
+          <div class="tc-desc">Meist liegt hier ungenutztes Potenzial in Spezialprogrammen, die standardmäßig nicht geprüft werden.</div>
+        </div>
+      </div>
+      <div class="tc" id="t1">
+        <div class="tc-range mid">3–5</div>
+        <div>
+          <div class="tc-title">Hohes Förderpotenzial</div>
+          <div class="tc-desc">Wahrscheinlich werden aktuell relevante Zuschüsse nicht genutzt. Eine systematische Prüfung ist dringend empfehlenswert.</div>
+        </div>
+      </div>
+      <div class="tc" id="t2">
+        <div class="tc-range hi">6–7</div>
+        <div>
+          <div class="tc-title">Akuter Handlungsbedarf</div>
+          <div class="tc-desc">Ihr Unternehmen lässt mit hoher Wahrscheinlichkeit erhebliche Fördermittel liegen. Sofortige Analyse ist empfohlen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALLENGES + PROOF -->
+  <div class="section">
+    <div class="section-badge">Kommt Ihnen das bekannt vor?</div>
+    <div class="section-title">Typische Herausforderungen des Mittelstandes</div>
+    <div class="challenge-cards">
+      <div class="ccard">
+        <div class="ccard-img">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" fill="#e8f0fc"/>
+            <path d="M16 44 L24 32 L30 38 L38 22 L46 28" stroke="#1a6fc4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="16" cy="44" r="3.5" fill="#e74c3c"/>
+            <path d="M12 48 L50 48" stroke="#1a6fc4" stroke-width="1.5" opacity="0.25"/>
+            <circle cx="30" cy="20" r="4" fill="none" stroke="#e74c3c" stroke-width="2"/>
+            <path d="M30 17 L30 21M30 23 L30 23.5" stroke="#e74c3c" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="ccard-title">Du investierst viel</div>
+        <div class="ccard-desc">aber Fördermittel bleiben ungenutzt, weil der Dschungel aus Programmen einfach zu undurchsichtig ist.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-img">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" fill="#e8f0fc"/>
+            <circle cx="30" cy="24" r="9" stroke="#1a6fc4" stroke-width="2" fill="#fff"/>
+            <path d="M15 50 c0-9 7-14 15-14 8 0 15 5 15 14" stroke="#1a6fc4" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <text x="40" y="18" fill="#e74c3c" font-size="14" font-family="sans-serif" font-weight="700">?</text>
+            <text x="10" y="30" fill="#e74c3c" font-size="12" font-family="sans-serif" font-weight="700">?</text>
+          </svg>
+        </div>
+        <div class="ccard-title">Dein Steuerberater sagt „geht nicht"</div>
+        <div class="ccard-desc">aber Dein Bauchgefühl weiß: Es muss Fördermöglichkeiten geben, die Du noch nicht kennst.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-img">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" fill="#e8f0fc"/>
+            <rect x="14" y="18" width="32" height="24" rx="4" stroke="#1a6fc4" stroke-width="2" fill="#fff"/>
+            <path d="M20 27h20M20 32h14M20 37h10" stroke="#1a6fc4" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+            <circle cx="42" cy="38" r="6" fill="#e74c3c" opacity="0.15"/>
+            <path d="M39 38 L45 38M42 35 L42 41" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" transform="rotate(45 42 38)"/>
+          </svg>
+        </div>
+        <div class="ccard-title">Dauernd Angebote, aber nichts ist förderfähig</div>
+        <div class="ccard-desc">Agenturen versprechen viel, doch am Ende bleibt die Enttäuschung über nicht nutzbare Leistungen.</div>
+      </div>
+    </div>
+
+    <div class="proof-testimonial">
+      <div class="proof-amount">6.500 €</div>
+      <div class="proof-amount-label">monatlich · staatliche Rückerstattung</div>
+      <div class="proof-divider"></div>
+      <div class="q1">„Schnell, einfach und ohne Stress. Von der Antragstellung bis zum vollständigen Abschluss des Prozesses."</div>
+      <div class="q2">„Es klang zuerst zu gut, um wahr zu sein. Ich konnte mir nicht vorstellen, dass unsere Steuergelder so einfach für Förderungen genutzt werden können, wenn man weiß wie."</div>
+    </div>
+  </div>
+
+  <!-- MISTAKES -->
+  <div class="dark">
+    <div class="section-badge">Sektion 05 · Häufige Fehler</div>
+    <div class="section-title">Was die meisten Geschäftsführer übersehen</div>
+    <div class="mistakes-grid">
+      <div class="mc">
+        <div class="mc-x"><span>✕</span></div>
+        <div class="mc-text"><strong>Fördermittel nur mit Investitionen verbunden</strong>Personalförderung bleibt vollständig ungeprüft und unsichtbar.</div>
+      </div>
+      <div class="mc">
+        <div class="mc-x"><span>✕</span></div>
+        <div class="mc-text"><strong>Oberflächliche interne Prüfung</strong>Ohne systematischen Ansatz bleiben Programme dauerhaft unter dem Radar.</div>
+      </div>
+      <div class="mc">
+        <div class="mc-x"><span>✕</span></div>
+        <div class="mc-text"><strong>Förderfähigkeit zu früh ausgeschlossen</strong>Oft basierend auf veralteten Annahmen oder Steuerberater-Aussagen.</div>
+      </div>
+      <div class="mc">
+        <div class="mc-x"><span>✕</span></div>
+        <div class="mc-text"><strong>Bürokratieangst als Blockade</strong>Strukturierte Prozesse machen Anträge handhabbar. Sechsstellige Chancen werden so real.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="section-badge">Ihr nächster Schritt</div>
+    <div class="section-title">Kostenfreie Fördermittel-Potenzialanalyse</div>
+    <div class="cta-sub">In 30 Minuten prüfen wir gemeinsam Ihr Unternehmen:</div>
+    <div class="cta-checks">
+      <div class="cta-check"><div class="chk"></div>Welche Zuschüsse sofort realistisch sind</div>
+      <div class="cta-check"><div class="chk"></div>Welche Förderquote erreichbar ist</div>
+      <div class="cta-check"><div class="chk"></div>Relevante Programme für Ihr Unternehmen</div>
+      <div class="cta-check"><div class="chk"></div>Ihr tatsächliches Förderpotenzial in Euro</div>
+    </div>
+    <a href="https://calendly.com/mittelstandsfoerderung_de/chancen-analyse-crm?month=2026-04" target="_blank" class="cta-btn">Förderpotenzial prüfen →</a>
+    <div class="cta-note">Ohne Verpflichtung · Ohne Verwaltungsaufwand · Mit klarer ROI-Perspektive</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">Executive Förder-Audit 2026 · Mittelstandsförderung · Alle Rechte vorbehalten</div>
+
+</div>
+
+<script>
+const questions = [
+  {n:1, t:"Neueinstellungen", q:"Planen Sie Neueinstellungen in Produktion, Technik oder Verwaltung innerhalb der nächsten 12 Monate?"},
+  {n:2, t:"Fachkräftesicherung", q:"Investieren Sie aktuell in Weiterbildung, Qualifizierung oder Mitarbeiterbindung?"},
+  {n:3, t:"Digitalisierung", q:"Werden neue digitale Prozesse, ERP-Systeme oder Automatisierungslösungen eingeführt, die Schulungen erfordern?"},
+  {n:4, t:"Produktionsausbau", q:"Erweitern Sie Kapazitäten oder bauen neue Produktionsbereiche auf?"},
+  {n:5, t:"Regionale Lage", q:"Befindet sich Ihr Unternehmen in Sachsen, Thüringen oder strukturell förderfähigen Regionen?"},
+  {n:6, t:"Förderhistorie", q:"Wurde in den letzten 24 Monaten eine professionelle Fördermittelprüfung durchgeführt?"},
+  {n:7, t:"Interne Ressourcen", q:"Fehlt intern die Zeit oder Kompetenz, Förderanträge sauber zu prüfen und umzusetzen?"},
+];
+
+const answers = new Array(7).fill(null);
+const tbody = document.getElementById('auditBody');
+
+questions.forEach((q, i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td class="qn">${q.n}</td>
+    <td><span class="topic">${q.t}</span>${q.q}</td>
+    <td class="cc"><span class="rb" data-i="${i}" data-v="yes"></span></td>
+    <td class="cc"><span class="rb" data-i="${i}" data-v="partial"></span></td>
+    <td class="cc"><span class="rb" data-i="${i}" data-v="no"></span></td>
+  `;
+  tbody.appendChild(tr);
+});
+
+document.querySelectorAll('.rb').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const i = parseInt(btn.dataset.i);
+    const v = btn.dataset.v;
+    answers[i] = v;
+    document.querySelectorAll(`.rb[data-i="${i}"]`).forEach(b => { b.className = 'rb'; });
+    btn.classList.add(v);
+    updateScore();
+  });
+});
+
+function updateScore() {
+  const answered = answers.filter(a => a !== null).length;
+  const yes = answers.filter(a => a === 'yes').length;
+  document.getElementById('scoreNum').textContent = answered ? yes : '–';
+  ['t0','t1','t2'].forEach(id => document.getElementById(id).classList.remove('active'));
+  if (answered) {
+    if (yes <= 2) document.getElementById('t0').classList.add('active');
+    else if (yes <= 5) document.getElementById('t1').classList.add('active');
+    else document.getElementById('t2').classList.add('active');
+  }
+}
+</script>
+</body>
+</html>
